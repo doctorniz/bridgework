@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intervention library | Bridgework</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root="../" data-section="interventions">
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <p class="crumbs"><a href="../index.html">Home</a> / Interventions</p>
+  <h1>Intervention library</h1>
+  <p>Approaches that help, with when to use them, what they involve and what the evidence says. Filter by type and by setting.</p>
+</div></div>
+<section class="block"><div class="wrap">
+  <div class="filters" id="f-type" role="group" aria-label="Filter by type"></div>
+  <div class="filters" id="f-set" role="group" aria-label="Filter by setting"></div>
+  <div class="filters"><label for="q" class="sr">Search</label><input id="q" type="search" placeholder="Search interventions"> <button class="chip" id="clear" type="button">Clear filters</button> <span class="muted small" id="count" aria-live="polite"></span></div>
+  <div id="list"></div>
+  <div class="callout">Evidence notes are summaries for education. Check current guidelines and local protocols before applying them.</div>
+</div></section>
+</main>
+<script src="../assets/interventions.js"></script>
+<script src="../assets/site.js"></script>
+<script>
+(function(){
+  var D=window.INTERVENTIONS,type=null,setting=null,q="";
+  function uniq(f){var r=[];D.forEach(function(d){[].concat(f(d)).forEach(function(v){if(r.indexOf(v)<0)r.push(v)})});return r.sort()}
+  function chips(id,vals,set){
+    var el=document.getElementById(id);
+    vals.forEach(function(v){
+      var b=document.createElement("button");b.className="chip";b.type="button";b.textContent=v;b.setAttribute("aria-pressed","false");
+      b.onclick=function(){var on=b.getAttribute("aria-pressed")==="true";
+        el.querySelectorAll(".chip").forEach(function(x){x.setAttribute("aria-pressed","false")});
+        if(!on)b.setAttribute("aria-pressed","true");set(on?null:v);render()};
+      el.appendChild(b)});
+  }
+  chips("f-type",uniq(function(d){return d.type}),function(v){type=v});
+  chips("f-set",uniq(function(d){return d.settings}),function(v){setting=v});
+  document.getElementById("q").oninput=function(e){q=e.target.value.toLowerCase();render()};
+  document.getElementById("clear").onclick=function(){type=setting=null;q="";document.getElementById("q").value="";
+    document.querySelectorAll(".filters .chip[aria-pressed]").forEach(function(x){x.setAttribute("aria-pressed","false")});render()};
+  function li(a){return "<ul>"+a.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ul>"}
+  function render(){
+    var r=D.filter(function(d){
+      return (!type||d.type===type)&&(!setting||d.settings.indexOf(setting)>=0)&&
+        (!q||(d.name+" "+d.summary+" "+d.use).toLowerCase().indexOf(q)>=0)});
+    document.getElementById("count").textContent=r.length+" of "+D.length;
+    var out=document.getElementById("list");
+    if(!r.length){out.innerHTML="<div class='card'><strong>Nothing matches those filters.</strong> Try clearing a filter.</div>";return}
+    out.innerHTML=r.map(function(d){
+      return "<details class='it' id='"+d.id+"'><summary><div><h3>"+d.name+"</h3><p class='muted' style='margin:.3em 0 .5em'>"+d.summary+"</p><span class='tag'>"+d.type+"</span>"+
+        d.settings.map(function(s){return "<span class='tag'>"+s+"</span>"}).join("")+"</div></summary><div class='body'>"+
+        "<h4>When to use</h4><p>"+d.use+"</p><h4>What it involves</h4>"+li(d.how)+"<h4>Evidence</h4><p>"+d.evidence+"</p>"+
+        (d.link?"<p><a href='../"+d.link+"'>Go deeper &rarr;</a></p>":"")+"</div></details>"}).join("");
+    if(location.hash){var t=document.getElementById(location.hash.slice(1));if(t)t.open=true}
+  }
+  render();
+})();
+</script>
+</body>
+</html>

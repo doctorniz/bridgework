@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case: Dani, 34 | Bridgework</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root="../" data-section="cases">
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <p class="crumbs"><a href="../index.html">Home</a> / <a href="index.html">Case studies</a> / Dani</p>
+  <h1>Dani, 34</h1>
+  <p>Alcohol, rent arrears and a child protection notification. A fictional composite case.</p>
+</div></div>
+<section class="block"><div class="narrow prose">
+<div class="card" id="scene" aria-live="polite"></div>
+<div id="choices" class="quiz" style="margin-top:1em"><div class="opts" id="opts"></div><div class="fb" id="fb" aria-live="polite"></div></div>
+<p><button class="btn dark" id="restart" type="button" hidden>Start again</button></p>
+</div></section>
+</main>
+<script src="../assets/site.js"></script>
+<script>
+(function(){
+  var N={
+    start:{t:"<p>Dani, a 34-year-old mother of two (aged 4 and 9), has been notified to child protection after the school reported the 9-year-old arriving unfed and a neighbour reported late-night arguments. You are the social worker making first contact. Dani is behind on rent and has an eviction notice. Dani says: <em>\"Someone's told you I'm a drunk, haven't they?\"</em></p>",
+      o:[{l:"Explain your role honestly, then ask what Dani would like you to know about how things are going.",n:"engage"},
+         {l:"Start the alcohol screening tool straight away.",n:"screen_early"},
+         {l:"Say, \"Let's focus on the rent; I'm not here about drinking.\"",n:"avoid"}]},
+    screen_early:{fb:"<strong>Too early.</strong> Without trust and context, Dani may feel interrogated and minimise. Screening is valuable, but engagement comes first and the purpose should be explained.",n:"engage"},
+    avoid:{fb:"<strong>Misleading.</strong> You are there because of a notification, and avoiding the topic undermines trust if it comes up later. Honest transparency about your role is itself engaging.",n:"engage"},
+    engage:{t:"<p>You explain you are there because of the notification, what happens next and what Dani can influence. Dani relaxes a little: <em>\"I drink most nights since my partner left. It helps me sleep. I know it's not great but I'm managing.\"</em> They mention drinking around eight standard drinks most nights and shaking in the mornings.</p>",
+      o:[{l:"Acknowledge the pressure, ask about the shaking, and say you'd like to help Dani see a doctor before making any changes.",n:"medical"},
+         {l:"Advise Dani to stop drinking immediately to show the department good faith.",n:"stop"},
+         {l:"Reflect Dani's reasons for drinking and tell them you will return next week.",n:"nomed"}]},
+    stop:{fb:"<strong>Unsafe.</strong> Heavy daily drinking with morning tremor suggests physical dependence. Stopping suddenly can cause withdrawal seizures or delirium tremens. Dani needs a medical assessment first.",n:"medical"},
+    nomed:{fb:"<strong>Good empathy, but a missed risk.</strong> Morning shaking is a withdrawal warning sign. Reflecting is good, but you also need to raise medical assessment now.",n:"medical"},
+    medical:{t:"<p>Dani agrees to see a GP and says: <em>\"But I'm scared that if I admit this, you'll take my kids.\"</em> The rent arrears hearing is in ten days.</p>",
+      o:[{l:"Be honest about what you can and cannot promise, ask about Dani's hopes for the children, and offer to coordinate with housing and the GP.",n:"coordinate"},
+         {l:"Reassure Dani: \"I promise your kids will not be removed.\"",n:"promise"},
+         {l:"Tell Dani to sort the drinking out first and then deal with housing.",n:"sequence"}]},
+    promise:{fb:"<strong>You can't promise that.</strong> Decisions depend on child safety, and a broken promise damages trust. Honest, hopeful transparency works better.",n:"coordinate"},
+    sequence:{fb:"<strong>Unhelpful ordering.</strong> Housing instability drives stress and drinking, and losing the home would worsen safety. Work on both together.",n:"coordinate"},
+    coordinate:{t:"<h3 style='margin-top:0'>Debrief</h3><p>You engaged before assessing, recognised withdrawal risk and referred medically, and coordinated the practical supports (housing, GP, family) that make change possible, while being honest about your role. Next steps might include a brief intervention or MI conversations, withdrawal management, parenting and family supports, and tenancy advocacy.</p><div class='callout tip'><strong>Reflect</strong>What would you do if Dani missed the GP appointment? How would you keep the child's safety and Dani's trust in view at once?</div><p><a href='../modules/motivational-interviewing.html'>Revisit the MI module</a> &middot; <a href='../foundations/medicine.html#'>Withdrawal and medicine</a></p>",o:[]}
+  };
+  var scene=document.getElementById("scene"),opts=document.getElementById("opts"),fb=document.getElementById("fb"),rs=document.getElementById("restart");
+  function go(k){
+    var n=N[k];
+    if(n.fb){fb.innerHTML=n.fb;scene.setAttribute("data-prev","1");
+      opts.innerHTML="";var b=document.createElement("button");b.className="btn dark";b.textContent="Continue";b.onclick=function(){go(n.n)};opts.appendChild(b);return}
+    fb.innerHTML="";scene.innerHTML=n.t;opts.innerHTML="";
+    if(!n.o.length){rs.hidden=false;Bridgework.markDone("case-dani");return}
+    rs.hidden=true;
+    n.o.forEach(function(o){var b=document.createElement("button");b.className="opt";b.textContent=o.l;b.onclick=function(){go(o.n)};opts.appendChild(b)});
+  }
+  rs.onclick=function(){go("start")};
+  go("start");
+})();
+</script>
+</body>
+</html>

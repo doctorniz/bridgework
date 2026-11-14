@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossary | Bridgework</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root="../" data-section="tools">
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <p class="crumbs"><a href="../index.html">Home</a> / <a href="index.html">Practice tools</a> / Glossary</p>
+  <h1>Glossary</h1>
+</div></div>
+<section class="block"><div class="narrow">
+<label for="g" class="sr">Search glossary</label><input id="g" type="search" placeholder="Search terms" style="width:100%">
+<dl id="d"></dl>
+</div></section>
+</main>
+<script src="../assets/site.js"></script>
+<script>
+var G=[
+["AUDIT","Alcohol Use Disorders Identification Test; a 10-item screening questionnaire (AUDIT-C is the 3-item short form)."],
+["ASSIST","Alcohol, Smoking and Substance Involvement Screening Test; screens across multiple substances."],
+["Ambivalence","Holding conflicting feelings about change; normal and expected."],
+["Change talk","Client statements that favour change (desire, ability, reasons, need, commitment)."],
+["Co-occurring disorders","Substance use disorder alongside a mental health condition."],
+["Contingency management","Rewarding verified behaviour change, such as negative drug tests."],
+["CRAFT","Community Reinforcement and Family Training."],
+["Cue reactivity","Craving or physiological response triggered by cues linked with substance use."],
+["Harm reduction","Policies and practices that reduce the harms of drug use without requiring abstinence."],
+["Lapse","A single instance of use after a period of abstinence; distinct from a full return to previous patterns."],
+["Naloxone","Medicine that rapidly reverses opioid overdose."],
+["OAT","Opioid agonist treatment (methadone or buprenorphine)."],
+["OARS","Open questions, Affirmations, Reflections, Summaries."],
+["Recovery capital","The resources a person can draw on to start and sustain recovery."],
+["Sustain talk","Client statements that favour staying the same."],
+["Tolerance","Needing more of a substance to achieve the same effect; lost tolerance raises overdose risk."],
+["Withdrawal","Symptoms that occur when use stops or reduces after dependence."]
+];
+var d=document.getElementById("d");
+function r(q){d.innerHTML=G.filter(function(g){return !q||(g[0]+g[1]).toLowerCase().indexOf(q)>=0}).map(function(g){return "<dt>"+g[0]+"</dt><dd>"+g[1]+"</dd>"}).join("")||"<p>No matching terms.</p>"}
+document.getElementById("g").oninput=function(e){r(e.target.value.toLowerCase())};r("");
+</script>
+</body>
+</html>

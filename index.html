@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bridgework: addiction medicine and psychology for social work</title>
+<meta name="description" content="Free learning on addiction medicine, addiction psychology and the interventions that help, written for social workers.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-root="" data-section="home">
+<main id="main">
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">For social workers and students</p>
+  <h1>Know what helps, and how to offer it.</h1>
+  <p>Plain-language learning on the medicine, the psychology and the social context of addiction, with the interventions social workers can use in everyday practice.</p>
+  <p><a class="btn" href="foundations/">Start with the foundations</a> <a class="btn ghost" href="interventions/">Browse interventions</a></p>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <h2 style="margin-top:0">Where is your client right now?</h2>
+  <p class="muted">People move through stages of change and often back again. Pick a stage to see what tends to help.</p>
+  <div class="stages" id="stages" role="group" aria-label="Stage of change"></div>
+  <div class="stage-out card" id="stage-out" aria-live="polite" hidden></div>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="wrap">
+  <h2 style="margin-top:0">Addiction sits where body, mind and circumstance meet.</h2>
+  <div class="grid">
+    <a class="card" href="foundations/medicine.html"><p class="eyebrow">Addiction medicine</p><h3>Body and brain</h3><p class="muted">What substances do, withdrawal and who needs medical support, and the medicines you will see.</p></a>
+    <a class="card" href="foundations/psychology.html"><p class="eyebrow">Addiction psychology</p><h3>Why behaviour persists, and changes</h3><p class="muted">Learning and habit, ambivalence, trauma and co-occurring mental health conditions.</p></a>
+    <a class="card" href="foundations/context.html"><p class="eyebrow">Social context</p><h3>The world around the person</h3><p class="muted">Housing, income, justice, family, stigma and access to care.</p></a>
+  </div>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="wrap">
+  <h2 style="margin-top:0">The intervention toolkit</h2>
+  <p class="muted">Evidence-informed approaches, filterable by type and by the setting you work in.</p>
+  <div class="grid" id="home-it"></div>
+  <p><a href="interventions/">See all in the library &rarr;</a></p>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="wrap">
+  <div class="grid">
+    <a class="card" href="modules/motivational-interviewing.html"><p class="eyebrow">Module</p><h3>The first conversation: motivational interviewing</h3><p class="muted">Skills, spirit and a practice quiz.</p></a>
+    <a class="card" href="cases/dani.html"><p class="eyebrow">Case study</p><h3>Dani, 34: alcohol, rent arrears and a child protection notification</h3><p class="muted">A branching case with feedback at each decision.</p></a>
+    <a class="card" href="tools/"><p class="eyebrow">Tools</p><h3>Stage finder, glossary and language guide</h3><p class="muted">Quick references for practice.</p></a>
+  </div>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="wrap">
+  <h2 style="margin-top:0">Three practice principles</h2>
+  <div class="grid">
+    <div class="card"><h3 style="margin-top:0">Engage before you assess</h3><p class="muted">Trust makes honest assessment possible. Start with curiosity and the person's own goals.</p></div>
+    <div class="card"><h3 style="margin-top:0">Screen, and flag withdrawal risk</h3><p class="muted">Alcohol and benzodiazepine withdrawal can be dangerous. When in doubt, involve medical help.</p></div>
+    <div class="card"><h3 style="margin-top:0">Words shape care</h3><p class="muted">Say "person who uses drugs", not "addict". Language affects how people are treated and whether they seek help.</p></div>
+  </div>
+</div></section>
+</main>
+<script src="assets/interventions.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(function(){
+  var S=[
+    {n:"Precontemplation",d:"Not considering change; may not see use as a problem.",h:"Build the relationship, give information only if invited, keep the door open, reduce harm (naloxone, safer use). Avoid pushing for change."},
+    {n:"Contemplation",d:"Aware of a problem, but ambivalent.",h:"Motivational interviewing: explore both sides, evoke the person's own reasons, affirm strengths."},
+    {n:"Preparation",d:"Intending to act soon.",h:"Help set a specific plan: goals, supports, treatment options, practical barriers such as housing or transport."},
+    {n:"Action",d:"Actively changing behaviour.",h:"Skills (CBT, relapse prevention), medication supports, contingency management, case management and peer support."},
+    {n:"Maintenance",d:"Sustaining change over months.",h:"Aftercare, recovery capital, relapse planning, ongoing check-ins, community connection."}
+  ];
+  var box=document.getElementById("stages"),out=document.getElementById("stage-out");
+  S.forEach(function(s,i){
+    var b=document.createElement("button");b.className="stage";b.setAttribute("aria-pressed","false");
+    b.innerHTML="<b>"+s.n+"</b><span class='small muted'>"+s.d+"</span>";
+    b.onclick=function(){
+      box.querySelectorAll(".stage").forEach(function(x){x.setAttribute("aria-pressed","false")});
+      b.setAttribute("aria-pressed","true");out.hidden=false;
+      out.innerHTML="<h3 style='margin-top:0'>"+s.n+": what tends to help</h3><p>"+s.h+"</p><p class='small muted'>Relapse is part of many people's path; it means going back to an earlier stage, not failure.</p>";
+    };
+    box.appendChild(b);
+  });
+  var g=document.getElementById("home-it");
+  window.INTERVENTIONS.slice(0,6).forEach(function(it){
+    var a=document.createElement("a");a.className="card";a.href="interventions/#"+it.id;
+    a.innerHTML="<h3 style='margin-top:0'>"+it.name+"</h3><p class='muted small'>"+it.summary+"</p><span class='tag'>"+it.type+"</span>";
+    g.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Bridgework</title>
+<script>
+// A 404 can be served from any depth. On project sites (user.github.io/repo/) the base is /repo/.
+var p=location.pathname.split("/").filter(Boolean),
+    base=location.hostname.slice(-10)==="github.io"&&p.length?"/"+p[0]+"/":"/";
+document.write('<base href="'+base+'"><link rel="stylesheet" href="'+base+'assets/style.css">');
+</script>
+</head>
+<body data-root="" data-section="">
+<main id="main"><section class="block"><div class="narrow"><h1>Page not found</h1><p>That page does not exist. <a href="index.html">Return home</a>.</p></div></section></main>
+<script>document.write('<script src="'+document.baseURI+'assets/site.js"><\/script>');</script>
+</body>
+</html>

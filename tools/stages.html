@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage finder | Bridgework</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root="../" data-section="tools">
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <p class="crumbs"><a href="../index.html">Home</a> / <a href="index.html">Practice tools</a> / Stage finder</p>
+  <h1>Stage finder</h1>
+  <p>Choose the statement closest to what your client said. This is a conversation guide, not an assessment.</p>
+</div></div>
+<section class="block"><div class="narrow">
+  <fieldset style="border:0;padding:0;margin:0"><legend class="sr">What the client said</legend><div id="s"></div></fieldset>
+  <div class="card" id="r" aria-live="polite" hidden></div>
+</div></section>
+</main>
+<script src="../assets/site.js"></script>
+<script>
+var Q=[
+ ["\"I don't have a problem. Everyone else is overreacting.\"","Precontemplation","Build rapport, ask permission before giving information, reflect their view, offer harm reduction."],
+ ["\"I know I should cut down, but I don't know if I can, or if I want to.\"","Contemplation","Explore both sides of ambivalence; elicit change talk; affirm strengths."],
+ ["\"I'm going to stop next month. What are my options?\"","Preparation","Develop a specific plan: treatment choice, supports, medical review for withdrawal risk, practical barriers."],
+ ["\"I've stopped for two weeks and I'm trying to handle the cravings.\"","Action","Teach and practise coping skills, arrange supports, celebrate progress, plan for high-risk situations."],
+ ["\"I've been off it for a year, but I'm worried about slipping.\"","Maintenance","Maintain contact, build recovery capital, plan for lapses, revisit goals."],
+ ["\"I used again at the weekend. I've blown it.\"","Lapse","Respond without judgement; normalise lapses; explore what happened; revisit safety (reduced tolerance means overdose risk), and re-engage quickly."]
+];
+var s=document.getElementById("s"),r=document.getElementById("r");
+Q.forEach(function(q,i){
+  var l=document.createElement("label");l.style.cssText="display:block;margin:0 0 10px";
+  l.innerHTML="<input type='radio' name='q' value='"+i+"' style='margin-right:.6em'>"+q[0];
+  l.querySelector("input").onchange=function(){r.hidden=false;r.innerHTML="<p class='eyebrow'>Likely stage</p><h3 style='margin-top:0'>"+q[1]+"</h3><p>"+q[2]+"</p>"};
+  s.appendChild(l);
+});
+</script>
+</body>
+</html>

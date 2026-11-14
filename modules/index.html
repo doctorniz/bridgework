@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modules | Bridgework</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-root="../" data-section="modules">
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <p class="crumbs"><a href="../index.html">Home</a> / Modules</p>
+  <h1>Learning modules</h1>
+  <p>Short, practical modules with a check-your-learning quiz. Progress is saved in your browser only.</p>
+</div></div>
+<section class="block"><div class="wrap">
+  <div class="grid">
+    <a class="card" href="motivational-interviewing.html"><p class="eyebrow">Module 1</p><h3>The first conversation: motivational interviewing</h3><p class="muted">Spirit, OARS skills, change talk.</p><span class="tag" id="s-mi"></span></a>
+    <a class="card" href="../foundations/medicine.html"><p class="eyebrow">Read</p><h3>Addiction medicine</h3><p class="muted">Brain, withdrawal, medications.</p></a>
+    <a class="card" href="../foundations/psychology.html"><p class="eyebrow">Read</p><h3>Addiction psychology</h3><p class="muted">Learning, motivation, trauma.</p><span class="tag" id="s-psych"></span></a>
+  </div>
+  <p class="muted small">More modules to come: screening and brief intervention, relapse prevention, harm reduction, working with families.</p>
+</div></section>
+</main>
+<script src="../assets/site.js"></script>
+<script>
+document.getElementById("s-mi").textContent=Bridgework.isDone("mi-1")?"Quiz completed":"Not started";
+document.getElementById("s-psych").textContent=Bridgework.isDone("psych-1")?"Quiz completed":"Not started";
+</script>
+</body>
+</html>
