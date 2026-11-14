@@ -75,6 +75,7 @@ details.it summary{cursor:pointer;padding:18px 22px;list-style:none;display:flex
 details.it summary::-webkit-details-marker{display:none}
 details.it summary h3{margin:0}details.it summary::after{content:"+";font-size:1.5rem;color:var(--teal)}
 details.it[open] summary::after{content:"\2212"}
+@media(max-width:640px){#f-type,#f-set,#clear,details.it .tag{display:none}}
 details.it .body{padding:0 22px 20px;border-top:1px solid var(--line)}
 /* module */
 .layout{display:grid;gap:40px;grid-template-columns:240px 1fr;align-items:start}
