@@ -21,7 +21,7 @@
 
   var crisis = CONFIG.support.map(function (s) {
     return s.label + ' &middot; <a href="tel:' + s.tel + '">' + s.show + "</a>";
-  }).join("");
+  }).join("<br>");
   var crisisHtml = '<div class="crisis"><div class="wrap">' +
     CONFIG.support.map(function (s) {
       return "<span>" + s.label + ' &middot; <a href="tel:' + s.tel + '">' + s.show + "</a></span>";
