@@ -31,6 +31,15 @@ header.site .wrap{display:flex;align-items:center;justify-content:space-between;
 nav.main ul{display:flex;gap:.25em;list-style:none;margin:0;padding:0;flex-wrap:wrap}
 nav.main a{display:block;padding:.6em .8em;min-height:44px;color:var(--ink);text-decoration:none;border-radius:6px}
 nav.main a:hover{background:var(--tint)}nav.main a[aria-current]{background:var(--tint);color:var(--teal);font-weight:600}
+@media(max-width:640px){
+  .crisis{font-size:.78rem}.crisis .wrap{gap:.2em 1em}
+  header.site{position:static}
+  header.site .wrap{min-height:0;padding-top:.4em;gap:.2em}
+  .brand{font-size:1.15rem}
+  nav.main{width:100%;overflow-x:auto}
+  nav.main ul{flex-wrap:nowrap;gap:0}
+  nav.main a{white-space:nowrap;padding:.5em .7em;font-size:.92rem}
+}
 /* hero */
 .hero{background:var(--teal);color:#fff;padding:72px 0 64px}
 .hero h1{color:#fff;max-width:18ch}.hero p{max-width:56ch;font-size:1.15rem;color:#E1EEEC}
@@ -79,7 +88,7 @@ details.it[open] summary::after{content:"\2212"}
 details.it .body{padding:0 22px 20px;border-top:1px solid var(--line)}
 /* module */
 .layout{display:grid;gap:40px;grid-template-columns:240px 1fr;align-items:start}
-@media(max-width:860px){.layout{grid-template-columns:1fr}}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.toc{position:static}}
 .toc{position:sticky;top:84px;font-size:.93rem}
 .toc ol{padding-left:1.1em}.toc a{text-decoration:none}
 .prose{max-width:720px}
